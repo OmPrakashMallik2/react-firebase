@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { auth } from "../firebaseConfig";
 
 function SignIn() {
   const [email, setEmail] = useState("");
