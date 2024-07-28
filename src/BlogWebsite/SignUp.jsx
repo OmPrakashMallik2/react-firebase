@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,11 +12,11 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
-// import  from 'firebase/auth'
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -26,6 +26,7 @@ export default function SignUp() {
       data.get("email"),
       data.get("password")
     ).then((userCredentials) => {
+      navigate("/signin");
       console.log(userCredentials);
     });
     console.log({
@@ -113,7 +114,7 @@ export default function SignUp() {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link to="/signin" className="text-blue-500">
-                  Already have an account? Sign in
+                  Already have an account? Log in
                 </Link>
               </Grid>
             </Grid>

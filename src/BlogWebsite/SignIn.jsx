@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -17,6 +17,8 @@ import { auth } from "../firebaseConfig";
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -24,6 +26,7 @@ export default function SignIn() {
     signInWithEmailAndPassword(auth, data.get("email"), data.get("password"))
       .then((userCredentials) => {
         console.log(userCredentials.user);
+        navigate("/home")
       })
       .catch((err) => {
         console.log(err);
@@ -51,7 +54,7 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <Box
             component="form"
@@ -89,7 +92,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
               <Grid item xs>
