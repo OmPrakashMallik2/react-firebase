@@ -1,10 +1,10 @@
 import React from "react";
-import MyBlogWebsite from "./BlogWebsite/MyBlogWebsite";
+import MyApp from "./SocialMedia/MyApp";
 
 function App() {
   return (
     <div>
-      <MyBlogWebsite />
+      <MyApp />
     </div>
   );
 }

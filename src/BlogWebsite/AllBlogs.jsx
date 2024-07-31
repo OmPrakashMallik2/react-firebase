@@ -1,9 +1,11 @@
 import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 function AllBlogs() {
   const [blogs, setBlogs] = useState([]);
+
   useEffect(() => {
     const getAllBlogs = async () => {
       const querySnapshot = await getDocs(collection(db, "blogs"));
@@ -22,6 +24,12 @@ function AllBlogs() {
         <div key={blog.id} className="bg-white shadow-lg rounded-lg p-4">
           <h3 className="text-xl font-bold mb-2">{blog.heading}</h3>
           <p className="text-gray-700">{blog.content}</p>
+          <div className="flex items-center gap-x-2">
+            <button>
+              <ThumbUpIcon color="primary" />
+            </button>
+            <p className="text-gray-700 text-xl font-bold">{blog.likes}</p>
+          </div>
         </div>
       ))}
     </div>

@@ -28,18 +28,21 @@ export default function CreatePost() {
   const handleClose = () => setOpen(false);
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-
+    e.preventDefault();
+    let docRef;
     try {
-      const docRef = await addDoc(collection(db, "blogs"), {
+      docRef = await addDoc(collection(db, "blogs"), {
         heading: heading,
         content: content,
+        likes: 0,
       }).then((res) => {
         console.log("data added successfully: " + res + " --- " + docRef.id);
       });
     } catch (error) {
       console.log("error adding blog: " + error);
     }
+    setHeading("");
+    setContent("");
     handleClose();
   };
 
